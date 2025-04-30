@@ -1,0 +1,34 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="demo1.SellerWindow"
+        Title="SellerWindow">
+    <DockPanel>
+        <StackPanel 
+            DockPanel.Dock="Top" 
+            Orientation="Horizontal"
+            Height="70"
+            Background="Gainsboro">
+            <StackPanel 
+                Orientation="Horizontal"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Left">
+                <Image Width="50" Height="50"/>
+                <TextBlock x:Name="EmployeeFIOBlock" HorizontalAlignment="Left"/>
+            </StackPanel>
+            <TextBlock x:Name="TimerBlock" HorizontalAlignment="Right"/>
+        </StackPanel>
+        <StackPanel
+            DockPanel.Dock="Left"
+            Orientation="Vertical"
+            Width="200"
+            Background="Azure">
+            <Button Click="CreateOrder_OnClick" 
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Content="Сформировать заказ"/>
+        </StackPanel>
+    </DockPanel>
+</Window>
