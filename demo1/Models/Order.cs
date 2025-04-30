@@ -20,4 +20,9 @@ public partial class Order
     public int OrderRentalTime { get; set; }
 
     public virtual Client? OrderClient { get; set; }
+    
+    public override string ToString()
+    {
+        return $"{OrderId}";
+    }
 }

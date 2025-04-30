@@ -146,3 +146,4 @@
 /home/gara/RiderProjects/demo1/demo1/bin/Debug/net8.0/zh-Hant/Microsoft.CodeAnalysis.Workspaces.resources.dll
 /home/gara/RiderProjects/demo1/demo1/bin/Debug/net8.0/Npgsql.dll
 /home/gara/RiderProjects/demo1/demo1/bin/Debug/net8.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll
+/home/gara/RiderProjects/demo1/demo1/obj/Debug/net8.0/demo1.sourcelink.json

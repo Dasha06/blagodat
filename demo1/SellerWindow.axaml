@@ -23,8 +23,7 @@
         <StackPanel
             DockPanel.Dock="Left"
             Orientation="Vertical"
-            Width="200"
-            Background="Azure">
+            Width="200">
             <Button Click="CreateOrder_OnClick" 
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
