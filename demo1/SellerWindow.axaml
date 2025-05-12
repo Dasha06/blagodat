@@ -18,7 +18,11 @@
                 <Image Width="50" Height="50"/>
                 <TextBlock x:Name="EmployeeFIOBlock" HorizontalAlignment="Left"/>
             </StackPanel>
-            <TextBlock x:Name="TimerBlock" HorizontalAlignment="Right"/>
+            <Grid RowDefinitions="Auto">
+            <TextBlock Grid.Row="0" x:Name="TimerBlock" HorizontalAlignment="Right"/>
+            
+            <TextBlock Grid.Row="1" x:Name="WarningBlock" HorizontalAlignment="Right"/>
+            </Grid>
         </StackPanel>
         <StackPanel
             DockPanel.Dock="Left"

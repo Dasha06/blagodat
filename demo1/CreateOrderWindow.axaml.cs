@@ -10,6 +10,7 @@ using Avalonia.Layout;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media.Imaging;
 using demo1.Models;
+using IronBarCode;
 
 namespace demo1;
 
@@ -30,7 +31,10 @@ public partial class CreateOrderWindow : Window
 
     private void CreateOrder_OnClick(object? sender, RoutedEventArgs e)
     {
-        throw new System.NotImplementedException();
+        // const double mmToPx = 3.78;
+        // double height = mmToPx * 22.85;
+        // double width = mmToPx * ;
+        // GeneratedBarcode barcodeOrder = BarcodeWriter()
     }
 
 
