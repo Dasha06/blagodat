@@ -18,6 +18,8 @@ build_property.RootNamespace = demo1
 build_property.ProjectDir = /home/gara/RiderProjects/demo1/demo1/
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.EffectiveAnalysisLevelStyle = 8.0
+build_property.EnableCodeStyleSeverity = 
 
 [/home/gara/RiderProjects/demo1/demo1/AdminWindow.axaml]
 build_metadata.AdditionalFiles.SourceItemGroup = AvaloniaXaml
