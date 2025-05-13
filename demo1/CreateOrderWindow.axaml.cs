@@ -13,14 +13,12 @@ using ZXing;
 using ZXing.Common;
 using SkiaSharp;
 using ZXing.SkiaSharp.Rendering;
-using Document = iTextSharp.text.Document;
-using Rectangle = iTextSharp.text.Rectangle;
 
 namespace demo1;
 
 public partial class CreateOrderWindow : Window
 {
-    public List<string> TextBoxValues { get; } = new List<string>();
+    public List<string> TextBoxValues { get; set; } = new List<string>();
     
     public List<Order> orders = HelperDB.context.Orders.ToList();
     public List<Client> Clients = HelperDB.context.Clients.ToList();
@@ -115,6 +113,47 @@ public partial class CreateOrderWindow : Window
     {
         throw new System.NotImplementedException();
     }
+    
+    private void SaveOrder_OnClick(object? sender, RoutedEventArgs e)
+    {
+        var ClientsFromComplete = Client_CompleteBox.Text.Split();
+
+        var findClient = Clients.Select(x=> x).FirstOrDefault(x => x.ClientFirstName == ClientsFromComplete[0] && 
+                                                                   x.ClientMidName == ClientsFromComplete[1] &&
+                                                                   x.ClientLastName == ClientsFromComplete[2]);
+        List<Service> services = new List<Service>();
+
+        foreach (var text in TextBoxValues)
+        {
+            var findService = Services.Select(x=>x).FirstOrDefault(x => x.ServiceName == text);
+            services.Add(findService);
+        }
+        
+        Order newOrder = new Order
+        {
+            OrderId = Convert.ToInt16(OrderNumber_TextBox.Text),
+            OrderClientId = findClient.ClientId,
+            OrderCreateDate = DateOnly.Parse(DateTime.Now.ToString("yyyy-MM-dd")),
+            OrderCreateTime = TimeOnly.Parse(DateTime.Now.ToString("HH:mm:ss")),
+            OrderRentalTime = int.Parse(TimeProkat.Text),
+            OrderStatus = "Новая"
+        };
+
+        foreach (var serv in services)
+        {
+            var servAndOrder = new OrderAndService
+            {
+                OrderId = newOrder.OrderId,
+                ServiceId = serv.ServiceId
+            };
+            HelperDB.context.OrderAndServices.Add(servAndOrder);
+            HelperDB.context.SaveChanges();
+        }
+        
+        
+        HelperDB.context.Orders.Add(newOrder);
+        HelperDB.context.SaveChanges();
+    }
 
     private void AddTextBox(object? sender, RoutedEventArgs e)
     {
@@ -123,6 +162,7 @@ public partial class CreateOrderWindow : Window
             Margin = new Thickness(0, 5, 0, 5),
             Watermark = "Введите услугу"
         };
+        SetupAutoCompleteForServices(newTextBox);
         
         // Подписываемся на изменение текста
         newTextBox.TextChanged += (s, args) =>
@@ -143,7 +183,6 @@ public partial class CreateOrderWindow : Window
     
     private void SetupAutoCompleteForClients()
     {
-        // Устанавливаем ItemsSource
         Client_CompleteBox.ItemsSource = Clients;
 
         // Настраиваем фильтрацию (StartsWith)
@@ -164,6 +203,25 @@ public partial class CreateOrderWindow : Window
                     client.ClientPassword?.StartsWith(searchText, StringComparison.OrdinalIgnoreCase) == true;
                     
             }
+            return false;
+        };
+    }
+
+    private void SetupAutoCompleteForServices(AutoCompleteBox autoCompleteBox)
+    {
+        autoCompleteBox.ItemsSource = Services;
+        autoCompleteBox.FilterMode = AutoCompleteFilterMode.Custom;
+
+        autoCompleteBox.ItemFilter = (searchText, item) =>
+        {
+            if (item is Service service)
+            {
+                return 
+                    service.ServiceName.StartsWith(searchText, StringComparison.OrdinalIgnoreCase) == true ||
+                       service.ServiceCode.StartsWith(searchText, StringComparison.OrdinalIgnoreCase) == true ||
+                    service.ServiceId.ToString().StartsWith(searchText, StringComparison.OrdinalIgnoreCase) == true;
+            }
+
             return false;
         };
     }
@@ -193,4 +251,5 @@ public partial class CreateOrderWindow : Window
         if (orders.Count == 0) return 1;
         return orders.Max(o => o.OrderId) + 1;
     }
+
 }

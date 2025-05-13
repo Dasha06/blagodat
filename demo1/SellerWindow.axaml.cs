@@ -4,6 +4,7 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
+using demo1.Models;
 
 namespace demo1;
 
@@ -16,10 +17,11 @@ public partial class SellerWindow : Window
     private DateTime sessionStartTime;
     private bool warningShow = false;
     
-    public SellerWindow()
+    public SellerWindow(Worker worker)
     {
         InitializeComponent();
-        
+
+        EmployeeFIOBlock.Text = $"{worker.WorkerFirstName} {worker.WorkerLastName}";
         
         sessionStartTime = DateTime.Now;
         StartSessionTimer();
@@ -29,7 +31,6 @@ public partial class SellerWindow : Window
     {
         CreateOrderWindow window = new CreateOrderWindow();
         window.Show();
-        Close();
     }
     
     private async void StartSessionTimer()

@@ -12,4 +12,9 @@ public partial class Service
     public string ServiceCode { get; set; } = null!;
 
     public int ServiceCostPerHour { get; set; }
+    
+    public override string ToString()
+    {
+        return $"{ServiceName}";
+    }
 }

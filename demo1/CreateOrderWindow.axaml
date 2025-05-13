@@ -17,11 +17,11 @@
         </StackPanel>
         
         <StackPanel DockPanel.Dock="Bottom" Orientation="Vertical">
-            <Button Content="Сохранить" HorizontalAlignment="Left"></Button>
+            <Button Content="Сохранить" HorizontalAlignment="Left" Click="SaveOrder_OnClick"></Button>
         </StackPanel>
         <Grid 
             ColumnDefinitions="210,250"
-            RowDefinitions="0,*,*">
+            RowDefinitions="0,Auto,Auto, Auto">
             <!-- IsVisible="True" -->
             <StackPanel
                 Grid.Row="0"
@@ -40,11 +40,15 @@
                 </AutoCompleteBox>
                     
             </StackPanel>
+            <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0, 15">
+                <TextBlock Text="Время проката:  "/>
+                <TextBox x:Name="TimeProkat" Margin="5,-7" Watermark="часы"/>
+            </StackPanel>
             <StackPanel Grid.Column="0"
-                        Grid.Row="1"
+                        Grid.Row="2"
                         x:Name="ServicesStackPanel">
                 
-                <TextBlock Text="Добавьте услуги" Margin="25,10,0,10"/>
+                <TextBlock Text="Добавьте услуги" Margin="20,10,0,10"/>
         
                 <ItemsControl x:Name="TextBoxItems">
                     <ItemsControl.ItemTemplate>
@@ -66,11 +70,11 @@
                 HorizontalAlignment="Left">
                 <Button
                     Content="Не нашли? Добавить клиента"
-                    Click="CreateClient_OnClick"></Button>
+                    Click="CreateClient_OnClick"/>
             </StackPanel>
             <StackPanel 
                 Grid.Column="1"
-                Grid.Row="1">
+                Grid.Row="2">
                 <Button Click="AddTextBox" HorizontalAlignment="Left" Margin="-50, 0" Width="40">
                     <Image Name="ImageButton" Source="Images/Добавить.png" Width="20" Height="25"/>
                 </Button>

@@ -85,10 +85,6 @@
             "ZXing.Net.Bindings.SkiaSharp.V2": {
               "target": "Package",
               "version": "[0.16.16, )"
-            },
-            "iTextSharp": {
-              "target": "Package",
-              "version": "[5.5.13.4, )"
             }
           },
           "imports": [

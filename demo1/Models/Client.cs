@@ -27,6 +27,6 @@ public partial class Client
     
     public override string ToString()
     {
-        return $"{ClientLastName} {ClientFirstName} {ClientMidName}";
+        return $"{ClientFirstName} {ClientMidName} {ClientLastName}";
     }
 }
